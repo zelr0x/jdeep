@@ -43,40 +43,12 @@ public class SerializablePerson implements Serializable {
         this.friends.remove(friend);
     }
 
-    public boolean isFriendOf(final SerializablePerson person) {
-        return this.friends.contains(person);
-    }
-
     public void addNumber(final PhoneNumber number) {
         this.phoneNumbers.add(number);
     }
 
     public void removeNumber(final PhoneNumber number) {
         this.phoneNumbers.remove(number);
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public Set<PhoneNumber> getPhoneNumbers() {
-        return phoneNumbers;
-    }
-
-    public Set<SerializablePerson> getFriends() {
-        return friends;
-    }
-
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
     }
 
     @Override

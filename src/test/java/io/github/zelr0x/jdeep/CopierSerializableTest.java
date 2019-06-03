@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static io.github.zelr0x.jdeep.Copier.deepCopy;
 
-public class CopierTest {
+public class CopierSerializableTest {
     private static final PhoneNumber johnPhone =
             new PhoneNumber("+12345678900", Provider.JERIZON);
     private static SerializablePerson john;

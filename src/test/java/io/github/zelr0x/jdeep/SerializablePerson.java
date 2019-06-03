@@ -1,48 +1,49 @@
 package io.github.zelr0x.jdeep;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Person {
+public class SerializablePerson implements Serializable {
     private String firstName;
     private String lastName;
     private final Set<PhoneNumber> phoneNumbers;
-    private final Set<Person> friends;
+    private final Set<SerializablePerson> friends;
 
-    public Person(final String firstName, final String lastName,
-                  final Set<PhoneNumber> phoneNumbers,
-                  final Set<Person> friends) {
+    public SerializablePerson(final String firstName, final String lastName,
+                              final Set<PhoneNumber> phoneNumbers,
+                              final Set<SerializablePerson> friends) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumbers = phoneNumbers;
         this.friends = friends;
     }
 
-    public Person(final String firstName, final String lastName,
-                  final Set<PhoneNumber> phoneNumbers) {
+    public SerializablePerson(final String firstName, final String lastName,
+                              final Set<PhoneNumber> phoneNumbers) {
         this(firstName, lastName, phoneNumbers, new HashSet<>());
     }
 
-    public Person(final String firstName, final String lastName) {
+    public SerializablePerson(final String firstName, final String lastName) {
         this(firstName, lastName, new HashSet<>());
     }
 
-    public Person(final String firstName, final String lastName,
-                  final PhoneNumber phoneNumber) {
+    public SerializablePerson(final String firstName, final String lastName,
+                              final PhoneNumber phoneNumber) {
         this(firstName, lastName);
         addNumber(phoneNumber);
     }
 
-    public void addFriend(final Person friend) {
+    public void addFriend(final SerializablePerson friend) {
         this.friends.add(friend);
     }
 
-    public void removeFriend(final Person friend) {
+    public void removeFriend(final SerializablePerson friend) {
         this.friends.remove(friend);
     }
 
-    public boolean isFriendOf(final Person person) {
+    public boolean isFriendOf(final SerializablePerson person) {
         return this.friends.contains(person);
     }
 
@@ -66,7 +67,7 @@ public class Person {
         return phoneNumbers;
     }
 
-    public Set<Person> getFriends() {
+    public Set<SerializablePerson> getFriends() {
         return friends;
     }
 
@@ -82,7 +83,7 @@ public class Person {
     public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        final Person that = (Person) o;
+        final SerializablePerson that = (SerializablePerson) o;
         return Objects.equals(firstName, that.firstName) &&
                 Objects.equals(lastName, that.lastName) &&
                 Objects.equals(phoneNumbers, that.phoneNumbers) &&

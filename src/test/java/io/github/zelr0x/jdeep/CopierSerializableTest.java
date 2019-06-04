@@ -11,6 +11,7 @@ public class CopierSerializableTest {
             new PhoneNumber("+12345678900", Provider.JERIZON);
     private static SerializablePerson john;
     private static SerializablePerson jess;
+    private static SerializablePerson johnCopy;
 
     @Before
     public void setUp() {
@@ -19,29 +20,27 @@ public class CopierSerializableTest {
                 new PhoneNumber("+19876543210", Provider.JTNT));
         john.addFriend(jess);
         jess.addFriend(john);
+        johnCopy = deepCopy(john);
     }
 
     @Test
     public void serializableDeepCopyEqualityTest() {
-        final var john2 = deepCopy(john);
-
-        Assert.assertEquals("Original and copy are equal", john, john2);
+        Assert.assertEquals("Original and copy are equal", john, johnCopy);
     }
 
     @Test
     public void serializableDeepCopyMutabilityEffectTest() {
-        final var john2 = deepCopy(john);
         john.removeNumber(johnPhone);
-
-        Assert.assertNotEquals("Copy is affected by mutation of original", john, john2);
+        Assert.assertNotEquals("Copy is affected by mutation of original",
+                john, johnCopy);
     }
 
     @Test
     public void serializableDeepCopyBehaviorTest() {
-        final var john2 = deepCopy(john);
-        john2.removeFriend(jess);
-        final var expected = new SerializablePerson("John", "Jeek", johnPhone);
-
-        Assert.assertEquals("Failed invoking a method on a deep copy", expected, john2);
+        johnCopy.removeFriend(jess);
+        final var expected = new SerializablePerson(
+                "John", "Jeek", johnPhone);
+        Assert.assertEquals("Failed invoking a method on a deep copy",
+                expected, johnCopy);
     }
 }

@@ -42,10 +42,6 @@ public class Person {
         this.friends.remove(friend);
     }
 
-    public boolean isFriendOf(final Person person) {
-        return this.friends.contains(person);
-    }
-
     public void addNumber(final PhoneNumber number) {
         this.phoneNumbers.add(number);
     }
@@ -68,14 +64,6 @@ public class Person {
 
     public Set<Person> getFriends() {
         return friends;
-    }
-
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
     }
 
     @Override
